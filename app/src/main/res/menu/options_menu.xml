@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/none"
+        android:title="none"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/vertex"
+        android:title="vertex"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/line"
+        android:title="line"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/triangle"
+        android:title="triangle"
+        app:showAsAction="never"/>
+</menu>

@@ -3,11 +3,14 @@ package cn.autoref.androidopenglsample;
 import android.opengl.GLSurfaceView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
-import cn.autoref.androidopenglsample.renderer.TriangleRenderer;
+import cn.autoref.androidopenglsample.renderer.AutorefRenderer;
 
 public class MainActivity extends AppCompatActivity {
     private GLSurfaceView glSurfaceView;
+    private AutorefRenderer renderer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
         //设置Context版本
         glSurfaceView.setEGLContextClientVersion(2);
         //设置Renderer用于绘图
-        glSurfaceView.setRenderer(new TriangleRenderer());
+        renderer = new AutorefRenderer(this);
+        glSurfaceView.setRenderer(renderer);
         //设置调用requestRender()时才刷新View
         glSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
     }
@@ -33,5 +37,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         glSurfaceView.onPause();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.options_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        renderer.setCurrentEffect(item.getItemId());
+        glSurfaceView.requestRender();
+        return true;
     }
 }
